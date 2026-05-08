@@ -1,16 +1,21 @@
 import { Stack } from "expo-router";
-import { SafeAreaProvider } from "react-native-safe-area-context";
 
-export default function RootLayout() {
+export default function Layout() {
   return (
-    <SafeAreaProvider>
-      <Stack
-        screenOptions={{
+    <Stack>
+      <Stack.Screen name="menu/index" options={{ headerShown: false }} />
+
+      <Stack.Screen
+        name="menu/detail"
+        options={{
+          presentation: "transparentModal",
+          animation: "slide_from_bottom",
           headerShown: false,
-          headerBackTitle: "Back",
-          headerTintColor: "#007AFF",
+          contentStyle: {
+            backgroundColor: "transparent",
+          },
         }}
       />
-    </SafeAreaProvider>
+    </Stack>
   );
 }
