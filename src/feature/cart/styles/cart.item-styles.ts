@@ -58,6 +58,17 @@ const s = StyleSheet.create({
     fontSize: 16,
     fontWeight: "700",
   },
+  header: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "flex-start",
+  },
+
+  totalPrice: {
+    color: "#fff",
+    fontWeight: "800",
+    fontSize: 18,
+  },
 });
 
 export default s;

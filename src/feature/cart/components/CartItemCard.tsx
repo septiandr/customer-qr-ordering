@@ -17,11 +17,26 @@ export function CartItemCard({ item }: Props) {
 
   const removeItem = useCartStore((state) => state.removeItem);
 
+  /* =========================
+     TOTAL
+  ========================= */
+
+  const itemTotal = item.final_price * item.quantity;
+
   return (
     <View style={s.card}>
-      <Text style={s.name}>{item.name}</Text>
+      {/* HEADER */}
+      <View style={s.header}>
+        <View style={{ flex: 1 }}>
+          <Text style={s.name}>{item.name}</Text>
 
-      <Text style={s.price}>${item.final_price.toFixed(2)}</Text>
+          {/* PRICE PER ITEM */}
+          <Text style={s.price}>${item.final_price.toFixed(2)} / item</Text>
+        </View>
+
+        {/* TOTAL */}
+        <Text style={s.totalPrice}>${itemTotal.toFixed(2)}</Text>
+      </View>
 
       {/* OPTIONS */}
       {item.selected_options?.length > 0 && (
