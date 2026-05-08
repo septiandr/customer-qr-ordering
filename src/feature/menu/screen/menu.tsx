@@ -18,6 +18,7 @@ import { SearchBar } from "../components/SearchBar";
 
 import s from "../styles/menu.style";
 
+import { router } from "expo-router";
 import { SelectedOption } from "../../cart/types/cart.type";
 import { MenuItem } from "../types/menu.type";
 
@@ -80,7 +81,11 @@ export function MenuScreen() {
           <SearchBar value={search} onChange={setSearch} />
         </View>
 
-        <TouchableOpacity style={s.cartButton} activeOpacity={0.8}>
+        <TouchableOpacity
+          style={s.cartButton}
+          activeOpacity={0.8}
+          onPress={() => router.push("/cart")}
+        >
           <Ionicons name="bag-handle" size={22} color="#fff" />
 
           {totalItems > 0 && (

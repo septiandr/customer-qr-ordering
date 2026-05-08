@@ -1,8 +1,9 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Image, Text, TouchableOpacity, View } from "react-native";
 
 import { useCartStore } from "@/src/feature/cart/store/cart.store";
 
+import s from "../styles/menu.menu-card.style";
 import { MenuItem } from "../types/menu.type";
 
 type Props = {
@@ -23,10 +24,9 @@ export function getQuantityById(
 export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
   const cart = useCartStore((state) => state.cart);
   const addToCart = useCartStore((state) => state.addToCart);
-  const increaseQty = useCartStore((state) => state.increaseQty);
+  const increaseQtyById = useCartStore((state) => state.increaseQtyById);
   const decreaseQtyMenu = useCartStore((state) => state.decreaseQtyMenu);
   const isCustomizable = item.customization_groups?.length > 0;
-  console.log("🚀 ~ MenuCard ~ isCustomizable:", isCustomizable);
   const quantity = getQuantityById(cart, item.id);
 
   return (
@@ -74,10 +74,9 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
                 style={s.qtyButton}
                 onPress={() => {
                   if (isCustomizable) {
-                    console.log("🚀 -------");
                     onClickIncreaseQty(item);
                   } else {
-                    increaseQty(item.id.toString());
+                    increaseQtyById(item.id.toString());
                   }
                 }}
               >
@@ -108,89 +107,3 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
     </TouchableOpacity>
   );
 }
-
-const s = StyleSheet.create({
-  card: {
-    backgroundColor: "#1A1A1A",
-    borderRadius: 24,
-    overflow: "hidden",
-  },
-
-  image: {
-    width: "100%",
-    height: 180,
-  },
-
-  content: {
-    padding: 18,
-  },
-
-  name: {
-    color: "#fff",
-    fontSize: 18,
-    fontWeight: "700",
-  },
-
-  description: {
-    color: "#AAA",
-    marginTop: 8,
-    lineHeight: 22,
-  },
-
-  bottom: {
-    marginTop: 18,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-  },
-
-  price: {
-    color: "#FF8C32",
-    fontWeight: "700",
-    fontSize: 18,
-  },
-
-  /* =========================
-     ADD BUTTON
-  ========================= */
-
-  addButton: {
-    width: 42,
-    height: 42,
-    borderRadius: 14,
-    backgroundColor: "#FF8C32",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  /* =========================
-     QTY CONTROLS
-  ========================= */
-
-  qtyContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-    backgroundColor: "#111",
-    paddingHorizontal: 10,
-    paddingVertical: 8,
-    borderRadius: 16,
-  },
-
-  qtyButton: {
-    width: 32,
-    height: 32,
-    borderRadius: 10,
-    backgroundColor: "#FF8C32",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-
-  qtyText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "700",
-    minWidth: 20,
-    textAlign: "center",
-  },
-});

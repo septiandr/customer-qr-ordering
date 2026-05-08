@@ -11,6 +11,7 @@ type CartStore = {
   removeItem: (cart_id: string) => void;
   clearCart: () => void;
   decreaseQtyMenu: (id: string) => void;
+  increaseQtyById: (id: string) => void;
 };
 export const useCartStore = create<CartStore>((set) => ({
   cart: [],
@@ -64,6 +65,19 @@ export const useCartStore = create<CartStore>((set) => ({
     set((state) => {
       const updatedCart = state.cart.map((x) =>
         x.cart_id === cart_id
+          ? {
+              ...x,
+              quantity: x.quantity + 1,
+            }
+          : x,
+      );
+
+      return recalc(updatedCart);
+    }),
+  increaseQtyById: (id: string) =>
+    set((state) => {
+      const updatedCart = state.cart.map((x) =>
+        x.id === Number(id)
           ? {
               ...x,
               quantity: x.quantity + 1,

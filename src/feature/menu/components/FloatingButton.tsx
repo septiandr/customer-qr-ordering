@@ -19,10 +19,7 @@ export function FloatingCheckoutButton() {
       <TouchableOpacity
         activeOpacity={0.9}
         style={s.button}
-        onPress={
-          () => console.log("first")
-          //   router.push("/cart")
-        }
+        onPress={() => router.push("/cart")}
       >
         {/* LEFT */}
         <View style={s.left}>
