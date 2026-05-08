@@ -1,12 +1,15 @@
-import React from "react";
-import { Text, View } from "react-native";
+import { MenuScreen } from "@/src/feature/menu/screen/menu";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-const Menu = () => {
+export default function Menu() {
   return (
-    <View>
-      <Text>Menu</Text>
-    </View>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "#111",
+      }}
+    >
+      <MenuScreen />
+    </SafeAreaView>
   );
-};
-
-export default Menu;
+}

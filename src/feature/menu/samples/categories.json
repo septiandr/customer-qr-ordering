@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "name": "Appetizers",
+    "sort_order": 1
+  },
+  {
+    "id": 2,
+    "name": "Main Course",
+    "sort_order": 2
+  },
+  {
+    "id": 3,
+    "name": "Drinks",
+    "sort_order": 3
+  }
+]
