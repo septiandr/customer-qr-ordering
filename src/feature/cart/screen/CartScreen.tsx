@@ -1,6 +1,7 @@
 import { FlashList } from "@shopify/flash-list";
 import { Text, TouchableOpacity, View } from "react-native";
 
+import { router } from "expo-router";
 import { CartItemCard } from "../components/CartItemCard";
 import { useCartStore } from "../store/cart.store";
 import s from "../styles/cart.styles";
@@ -38,7 +39,10 @@ export default function CartScreenUI() {
           <Text style={s.totalValue}>${subtotal.toFixed(2)}</Text>
         </View>
 
-        <TouchableOpacity style={s.checkoutButton}>
+        <TouchableOpacity
+          style={s.checkoutButton}
+          onPress={() => router.push("/order")}
+        >
           <Text style={s.checkoutButtonText}>Proceed to Checkout</Text>
         </TouchableOpacity>
       </View>

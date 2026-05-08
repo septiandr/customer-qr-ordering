@@ -2,6 +2,8 @@ import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
 import { useCallback, useState } from "react";
 import { Alert } from "react-native";
+import { useCartStore } from "../../cart/store/cart.store";
+import { useTableStore } from "../../home/store/table.store";
 
 const table = {
   id: "R001",
@@ -15,6 +17,9 @@ export function useQRScanner() {
   const [loading, setLoading] = useState(false);
 
   const [locked, setLocked] = useState(false);
+  const setTable = useTableStore((state) => state.setTable);
+
+  const clearCart = useCartStore((state) => state.clearCart);
 
   const onScan = useCallback(
     async (data: string) => {
@@ -29,11 +34,15 @@ export function useQRScanner() {
           Haptics.NotificationFeedbackType.Success,
         );
 
+        setTable(table.table_id);
+
+        clearCart();
+
         setLoading(true);
 
         setTimeout(() => {
           router.replace({
-            pathname: "/menu",
+            pathname: "/home",
             params: {
               table: table.table_id,
             },
@@ -51,7 +60,6 @@ export function useQRScanner() {
             {
               text: "OK",
               onPress: () => {
-                // aktifkan scan lagi setelah alert ditutup
                 setLocked(false);
               },
             },
