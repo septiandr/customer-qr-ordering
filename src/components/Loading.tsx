@@ -9,8 +9,15 @@ export function Loading() {
         justifyContent: "center",
         alignItems: "center",
       }}
+      accessibilityRole="none"
+      accessibilityLabel="Loading content"
+      accessibilityLiveRegion="polite"
     >
-      <ActivityIndicator size="large" color="#FF8C32" />
+      <ActivityIndicator
+        size="large"
+        color="#FF8C32"
+        accessibilityRole="progressbar"
+      />
 
       <Text
         style={{

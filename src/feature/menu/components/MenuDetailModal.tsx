@@ -134,6 +134,10 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
                     <TouchableOpacity
                       key={option.id}
                       onPress={() => selectOption(group, option)}
+                      accessibilityLabel={`${option.name}, extra price $${option.price_modifier.toFixed(2)}`}
+                      accessibilityRole="radio"
+                      accessibilityState={{ selected: active }}
+                      accessibilityHint={`Selects ${option.name} for your ${item.name}`}
                       style={{
                         backgroundColor: active ? "#FF8C32" : "#222",
                         borderRadius: 16,
@@ -174,7 +178,8 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
             <TouchableOpacity
               style={{
                 marginTop: 32,
-                height: 58,
+                minHeight: 58,
+                paddingVertical: 12,
                 backgroundColor:
                   selectedOptions.length > 0 ? "#FF8C32" : "#222",
                 borderRadius: 18,
@@ -183,6 +188,10 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
               }}
               disabled={selectedOptions.length === 0}
               onPress={() => onClickAdd(item, selectedOptions)}
+              accessibilityLabel={`Add ${item.name} to cart with selected options`}
+              accessibilityRole="button"
+              accessibilityState={{ disabled: selectedOptions.length === 0 }}
+              accessibilityHint="Confirms your choices and adds the item to your cart"
             >
               <Text
                 style={{

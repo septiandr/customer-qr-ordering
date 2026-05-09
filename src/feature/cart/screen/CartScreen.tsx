@@ -71,6 +71,7 @@ export default function CartScreenUI() {
           onPress={onCheckout}
           accessibilityLabel={`Proceed to checkout, total amount $${subtotal.toFixed(2)}`}
           accessibilityRole="button"
+          accessibilityHint="Sends your order to the kitchen"
         >
           <Text style={s.checkoutButtonText}>Proceed to Checkout</Text>
         </TouchableOpacity>

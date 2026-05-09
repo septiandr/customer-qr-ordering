@@ -46,8 +46,9 @@ const s = StyleSheet.create({
   ========================= */
 
   addButton: {
-    width: 42,
-    height: 42,
+    minWidth: 42,
+    minHeight: 42,
+    padding: 8,
     borderRadius: 14,
     backgroundColor: "#FF8C32",
     justifyContent: "center",
@@ -69,8 +70,9 @@ const s = StyleSheet.create({
   },
 
   qtyButton: {
-    width: 32,
-    height: 32,
+    minWidth: 32,
+    minHeight: 32,
+    padding: 4,
     borderRadius: 10,
     backgroundColor: "#FF8C32",
     justifyContent: "center",

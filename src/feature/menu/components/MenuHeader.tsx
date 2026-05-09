@@ -41,11 +41,12 @@ export function MenuHeader({
         onPress={onPressCart}
         accessibilityLabel={`View cart, ${totalItems} items`}
         accessibilityRole="button"
+        accessibilityHint="Opens the shopping cart to review and checkout your order"
       >
         <Ionicons name="bag-handle" size={22} color="#fff" />
 
         {totalItems > 0 && (
-          <View style={s.badge}>
+          <View style={s.badge} accessibilityLiveRegion="polite">
             <Text style={s.badgeText}>{totalItems}</Text>
           </View>
         )}

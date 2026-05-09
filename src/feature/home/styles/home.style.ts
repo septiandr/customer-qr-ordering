@@ -95,12 +95,13 @@ const s = StyleSheet.create({
 
   rescanButton: {
     marginTop: 18,
-    height: 58,
+    minHeight: 58,
+    paddingVertical: 12,
     borderRadius: 18,
     backgroundColor: "#222",
-    justifyContent: "center",
-    alignItems: "center",
     flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
     gap: 10,
     borderWidth: 1,
     borderColor: "#333",
