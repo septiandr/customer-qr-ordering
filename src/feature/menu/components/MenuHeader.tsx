@@ -1,6 +1,13 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useEffect } from "react";
 
 import { Text, TouchableOpacity, View } from "react-native";
+import Animated, {
+    useAnimatedStyle,
+    useSharedValue,
+    withSequence,
+    withSpring,
+} from "react-native-reanimated";
 
 import { SearchBar } from "../components/SearchBar";
 
@@ -22,6 +29,21 @@ export function MenuHeader({
   totalItems,
   onPressCart,
 }: Props) {
+  const scale = useSharedValue(1);
+
+  useEffect(() => {
+    if (totalItems > 0) {
+      scale.value = withSequence(
+        withSpring(1.4, { damping: 10, stiffness: 100 }),
+        withSpring(1, { damping: 10, stiffness: 100 }),
+      );
+    }
+  }, [totalItems, scale]);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
   return (
     <View
       style={{
@@ -46,9 +68,12 @@ export function MenuHeader({
         <Ionicons name="bag-handle" size={22} color="#fff" />
 
         {totalItems > 0 && (
-          <View style={s.badge} accessibilityLiveRegion="polite">
+          <Animated.View
+            style={[s.badge, animatedStyle]}
+            accessibilityLiveRegion="polite"
+          >
             <Text style={s.badgeText}>{totalItems}</Text>
-          </View>
+          </Animated.View>
         )}
       </TouchableOpacity>
     </View>

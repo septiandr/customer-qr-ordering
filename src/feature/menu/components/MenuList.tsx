@@ -26,7 +26,8 @@ export function MenuList({ data, refreshing, onRefresh, onPressItem }: Props) {
         <RefreshControl
           refreshing={refreshing}
           onRefresh={onRefresh}
-          tintColor="#fff"
+          tintColor="#FF8C32"
+          colors={["#FF8C32"]}
         />
       }
       contentContainerStyle={{

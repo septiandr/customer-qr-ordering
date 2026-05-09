@@ -1,5 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withSequence,
+  withSpring,
+} from "react-native-reanimated";
 
 import { useCartStore } from "@/src/feature/cart/store/cart.store";
 
@@ -29,6 +35,19 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
   const isCustomizable = item.customization_groups?.length > 0;
   const quantity = getQuantityById(cart, item.id);
 
+  const scale = useSharedValue(1);
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
+
+  const animatePop = () => {
+    scale.value = withSequence(
+      withSpring(1.2, { damping: 10, stiffness: 100 }),
+      withSpring(1, { damping: 10, stiffness: 100 }),
+    );
+  };
+
   return (
     <TouchableOpacity
       style={s.card}
@@ -44,6 +63,7 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
         if (isCustomizable) {
           onPress();
         } else {
+          animatePop();
           addToCart({
             id: item.id,
             name: item.name,
@@ -74,17 +94,20 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
                 accessibilityLabel="Decrease quantity"
                 accessibilityRole="button"
                 accessibilityHint={`Reduces the number of ${item.name} in your cart`}
-                onPress={() => decreaseQtyMenu(item.id.toString())}
+                onPress={() => {
+                  animatePop();
+                  decreaseQtyMenu(item.id.toString());
+                }}
               >
                 <Ionicons name="remove" size={18} color="#fff" />
               </TouchableOpacity>
-              <Text
-                style={s.qtyText}
+              <Animated.Text
+                style={[s.qtyText, animatedStyle]}
                 accessibilityLabel={`Quantity: ${quantity}`}
                 accessibilityLiveRegion="polite"
               >
                 {quantity}
-              </Text>
+              </Animated.Text>
 
               <TouchableOpacity
                 style={s.qtyButton}
@@ -92,6 +115,7 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
                 accessibilityRole="button"
                 accessibilityHint={`Increases the number of ${item.name} in your cart`}
                 onPress={() => {
+                  animatePop();
                   if (isCustomizable) {
                     onClickIncreaseQty(item);
                   } else {
@@ -111,6 +135,7 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
                 if (isCustomizable) {
                   onClickIncreaseQty(item);
                 } else {
+                  animatePop();
                   addToCart({
                     id: item.id,
                     name: item.name,
