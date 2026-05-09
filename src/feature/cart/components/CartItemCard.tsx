@@ -51,7 +51,11 @@ export function CartItemCard({ item }: Props) {
 
       {/* ACTIONS */}
       <View style={s.bottom}>
-        <TouchableOpacity onPress={() => removeItem(item.cart_id)}>
+        <TouchableOpacity
+          onPress={() => removeItem(item.cart_id)}
+          accessibilityLabel={`Remove ${item.name} from cart`}
+          accessibilityRole="button"
+        >
           <Ionicons name="trash-outline" size={20} color="#ff4d4d" />
         </TouchableOpacity>
 
@@ -59,15 +63,24 @@ export function CartItemCard({ item }: Props) {
           <TouchableOpacity
             style={s.minusButton}
             onPress={() => decreaseQty(item.cart_id)}
+            accessibilityLabel={`Decrease quantity of ${item.name}`}
+            accessibilityRole="button"
           >
             <Ionicons name="remove" size={18} color="#111" />
           </TouchableOpacity>
 
-          <Text style={s.qtyText}>{item.quantity}</Text>
+          <Text
+            style={s.qtyText}
+            accessibilityLabel={`Quantity: ${item.quantity}`}
+          >
+            {item.quantity}
+          </Text>
 
           <TouchableOpacity
             style={s.plusButton}
             onPress={() => increaseQty(item.cart_id)}
+            accessibilityLabel={`Increase quantity of ${item.name}`}
+            accessibilityRole="button"
           >
             <Ionicons name="add" size={18} color="#111" />
           </TouchableOpacity>

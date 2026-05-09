@@ -33,6 +33,8 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
     <TouchableOpacity
       style={s.card}
       activeOpacity={0.9}
+      accessibilityLabel={`Menu item: ${item.name}, Price: $${item.price.toFixed(2)}`}
+      accessibilityRole="button"
       onPress={() => {
         if (isCustomizable) {
           onPress();
@@ -64,14 +66,23 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
             <View style={s.qtyContainer}>
               <TouchableOpacity
                 style={s.qtyButton}
+                accessibilityLabel="Decrease quantity"
+                accessibilityRole="button"
                 onPress={() => decreaseQtyMenu(item.id.toString())}
               >
                 <Ionicons name="remove" size={18} color="#fff" />
               </TouchableOpacity>
-              <Text style={s.qtyText}>{quantity}</Text>
+              <Text
+                style={s.qtyText}
+                accessibilityLabel={`Quantity: ${quantity}`}
+              >
+                {quantity}
+              </Text>
 
               <TouchableOpacity
                 style={s.qtyButton}
+                accessibilityLabel="Increase quantity"
+                accessibilityRole="button"
                 onPress={() => {
                   if (isCustomizable) {
                     onClickIncreaseQty(item);
@@ -86,6 +97,8 @@ export function MenuCard({ item, onPress, onClickIncreaseQty }: Props) {
           ) : (
             <TouchableOpacity
               style={s.addButton}
+              accessibilityLabel={`Add ${item.name} to cart`}
+              accessibilityRole="button"
               onPress={() => {
                 if (isCustomizable) {
                   onClickIncreaseQty(item);

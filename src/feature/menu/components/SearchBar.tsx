@@ -17,6 +17,8 @@ export function SearchBar({ value, onChange }: Props) {
         placeholder="Search menu..."
         placeholderTextColor="#777"
         style={s.input}
+        accessibilityLabel="Search menu items"
+        accessibilityRole="search"
       />
     </View>
   );

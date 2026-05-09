@@ -42,11 +42,13 @@ export default function TableHomeScreen() {
       <TouchableOpacity
         style={s.primaryCard}
         activeOpacity={0.9}
+        accessibilityLabel="Browse Menu"
+        accessibilityRole="button"
         onPress={() =>
           router.push({
             pathname: "/menu",
             params: {
-              table: "T001",
+              table: currentTable || "T001",
             },
           })
         }
@@ -64,6 +66,8 @@ export default function TableHomeScreen() {
       <TouchableOpacity
         style={s.secondaryCard}
         activeOpacity={0.9}
+        accessibilityLabel="Track Order"
+        accessibilityRole="button"
         onPress={() => router.push("/order")}
       >
         <Ionicons name="time" size={28} color="#FF8C32" />
@@ -79,6 +83,8 @@ export default function TableHomeScreen() {
       <TouchableOpacity
         style={s.secondaryCard}
         activeOpacity={0.9}
+        accessibilityLabel="View Cart"
+        accessibilityRole="button"
         onPress={() => router.push("/cart")}
       >
         <Ionicons name="bag-handle" size={28} color="#FF8C32" />
@@ -94,6 +100,8 @@ export default function TableHomeScreen() {
       <TouchableOpacity
         style={s.rescanButton}
         activeOpacity={0.8}
+        accessibilityLabel="Rescan QR Code"
+        accessibilityRole="button"
         onPress={handleRescan}
       >
         <Ionicons name="qr-code" size={18} color="#fff" />

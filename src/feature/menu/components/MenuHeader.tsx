@@ -39,6 +39,8 @@ export function MenuHeader({
         style={s.cartButton}
         activeOpacity={0.8}
         onPress={onPressCart}
+        accessibilityLabel={`View cart, ${totalItems} items`}
+        accessibilityRole="button"
       >
         <Ionicons name="bag-handle" size={22} color="#fff" />
 

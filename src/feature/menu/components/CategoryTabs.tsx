@@ -29,6 +29,9 @@ export function CategoryTabs({ categories, selected, onSelect }: Props) {
             style={[s.button, active && s.activeButton]}
             onPress={() => onSelect(item.id)}
             activeOpacity={0.8}
+            accessibilityLabel={`Filter by category: ${item.name}`}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: active }}
           >
             <Text style={[s.text, active && s.activeText]}>{item.name}</Text>
           </TouchableOpacity>

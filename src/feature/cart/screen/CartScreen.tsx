@@ -18,15 +18,25 @@ export default function CartScreenUI() {
   const totalItems = useCartStore((state) => state.totalItems);
 
   const onCheckout = async () => {
-    const payload = mapCartToOrderPayload(cart, currentTable || "");
-    const res = await createOrder(payload);
-    if (res && typeof res === "object" && "success" in res && res.success) {
-      router.push({
-        pathname: "/order",
-        params: {
-          orderId: (res as any)?.data?.order_id || "",
-        },
-      });
+    try {
+      const payload = mapCartToOrderPayload(cart, currentTable || "");
+      const res = await createOrder(payload);
+      if (res && typeof res === "object" && "success" in res && res.success) {
+        router.push({
+          pathname: "/order",
+          params: {
+            orderId: (res as any)?.data?.order_id || "",
+          },
+        });
+      } else {
+        // Handle API error message if present
+        alert(
+          (res as any)?.message || "Failed to create order. Please try again.",
+        );
+      }
+    } catch (error) {
+      console.error("Checkout error:", error);
+      alert("Something went wrong. Please check your connection.");
     }
   };
 
@@ -56,7 +66,12 @@ export default function CartScreenUI() {
           <Text style={s.totalValue}>${subtotal.toFixed(2)}</Text>
         </View>
 
-        <TouchableOpacity style={s.checkoutButton} onPress={onCheckout}>
+        <TouchableOpacity
+          style={s.checkoutButton}
+          onPress={onCheckout}
+          accessibilityLabel={`Proceed to checkout, total amount $${subtotal.toFixed(2)}`}
+          accessibilityRole="button"
+        >
           <Text style={s.checkoutButtonText}>Proceed to Checkout</Text>
         </TouchableOpacity>
       </View>

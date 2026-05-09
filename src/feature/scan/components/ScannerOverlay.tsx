@@ -22,7 +22,12 @@ export function ScannerOverlay({ loading, onDemo }: Props) {
       <View style={s.bottomContent}>
         <Text style={s.bottomText}>Scan QR untuk mulai order 🍽️</Text>
 
-        <TouchableOpacity style={s.demoButton} onPress={onDemo}>
+        <TouchableOpacity
+          style={s.demoButton}
+          onPress={onDemo}
+          accessibilityLabel="Demo mode: Scan Table T001"
+          accessibilityRole="button"
+        >
           <Text style={s.demoButtonText}>Demo Table</Text>
         </TouchableOpacity>
       </View>
