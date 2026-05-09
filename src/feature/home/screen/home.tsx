@@ -42,7 +42,14 @@ export default function TableHomeScreen() {
       <TouchableOpacity
         style={s.primaryCard}
         activeOpacity={0.9}
-        onPress={() => router.push("/menu")}
+        onPress={() =>
+          router.push({
+            pathname: "/menu",
+            params: {
+              table: "T001",
+            },
+          })
+        }
       >
         <Ionicons name="restaurant" size={28} color="#111" />
 

@@ -1,21 +1,19 @@
+import { QueryProvider } from "@/src/lib/query/query-provider";
 import { Stack } from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <Stack>
-      <Stack.Screen name="menu/index" options={{ headerShown: false }} />
-
-      <Stack.Screen
-        name="menu/detail"
-        options={{
-          presentation: "transparentModal",
-          animation: "slide_from_bottom",
-          headerShown: false,
-          contentStyle: {
-            backgroundColor: "transparent",
-          },
-        }}
-      />
-    </Stack>
+    <SafeAreaProvider>
+      <QueryProvider>
+        <Stack
+          screenOptions={{
+            headerShown: false,
+            headerBackTitle: "Back",
+            headerTintColor: "#007AFF",
+          }}
+        />
+      </QueryProvider>
+    </SafeAreaProvider>
   );
 }
