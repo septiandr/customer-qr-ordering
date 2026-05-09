@@ -1,0 +1,55 @@
+{
+  "common": {
+    "loading": "Loading...",
+    "retry": "Retry",
+    "failed_to_load": "Failed to load data",
+    "data_not_found": "Data not found",
+    "add_to_cart": "Add To Cart",
+    "qty": "Qty",
+    "subtotal": "Subtotal",
+    "total_items": "Total Items",
+    "proceed_to_checkout": "Proceed to Checkout",
+    "items_in_cart": "items in cart",
+    "required": "Required"
+  },
+  "home": {
+    "welcome": "Welcome 👋",
+    "browse_menu": "Browse Menu",
+    "browse_menu_subtitle": "Explore delicious food",
+    "track_order": "Track Order",
+    "track_order_subtitle": "See cooking progress",
+    "view_cart": "View Cart",
+    "view_cart_subtitle": "Review your order",
+    "scan_another": "Scan Another Table",
+    "home_description": "Browse menu, track your order, and enjoy your dining experience."
+  },
+  "menu": {
+    "title": "Menu",
+    "subtitle": "Discover delicious food 🍣",
+    "search_placeholder": "Search menu...",
+    "view_cart_a11y": "View cart, {{count}} items",
+    "add_to_cart_a11y": "Add {{name}} to cart",
+    "customization_hint": "Opens customization options for this item",
+    "add_hint": "Adds this item to your cart"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "remove_item_a11y": "Remove {{name}} from cart",
+    "checkout_failed": "Failed to create order. Please try again.",
+    "checkout_error": "Something went wrong. Please check your connection."
+  },
+  "order": {
+    "title": "Order Tracking",
+    "ordered_items": "Ordered Items",
+    "customer_note": "Customer Note",
+    "tax": "Tax",
+    "grand_total": "Grand Total",
+    "loading_order": "Loading order..."
+  },
+  "scan": {
+    "title": "Scan Table QR",
+    "subtitle": "Point your camera at the table QR",
+    "start_order": "Scan QR to start ordering 🍽️",
+    "demo_table": "Demo Table"
+  }
+}

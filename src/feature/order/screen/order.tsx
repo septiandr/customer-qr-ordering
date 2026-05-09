@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, ScrollView, Text, View } from "react-native";
 
 import { ETABox } from "../components/ETABox";
@@ -23,6 +24,7 @@ const statuses: OrderStatus[] = [
 
 export default function OrderTrackingScreen() {
   const currentTable = useTableStore((state) => state.currentTable);
+  const { t } = useTranslation();
 
   const { orderId } = useLocalSearchParams<{
     orderId: string;
@@ -68,7 +70,7 @@ export default function OrderTrackingScreen() {
       <View style={[s.container, s.centered]}>
         <ActivityIndicator size="large" />
 
-        <Text style={s.loadingText}>Loading order...</Text>
+        <Text style={s.loadingText}>{t("order.loading_order")}</Text>
       </View>
     );
   }
@@ -81,7 +83,7 @@ export default function OrderTrackingScreen() {
     >
       {/* HEADER */}
       <View style={s.header}>
-        <Text style={s.title}>Order Tracking</Text>
+        <Text style={s.title}>{t("order.title")}</Text>
 
         <Text style={s.subtitle}>Table {currentTable}</Text>
 
@@ -98,13 +100,15 @@ export default function OrderTrackingScreen() {
 
       {/* ITEMS */}
       <View style={s.section}>
-        <Text style={s.sectionTitle}>Ordered Items</Text>
+        <Text style={s.sectionTitle}>{t("order.ordered_items")}</Text>
 
-        {order?.data?.items?.map((item: any) => (
+        {(order as any)?.data?.items?.map((item: any) => (
           <View key={`${item.menu_item_id}`} style={s.itemCard}>
             <Text style={s.itemName}>{item.menu_name}</Text>
 
-            <Text style={s.itemText}>Qty: {item.quantity}</Text>
+            <Text style={s.itemText}>
+              {t("common.qty")}: {item.quantity}
+            </Text>
 
             <Text style={s.itemText}>${item.subtotal?.toFixed(2)}</Text>
 
@@ -124,28 +128,31 @@ export default function OrderTrackingScreen() {
       {/* SUMMARY */}
       <View style={s.section}>
         <Text style={s.summaryText}>
-          Total Items: {order?.data?.summary?.total_items}
+          {t("common.total_items")}:{" "}
+          {(order as any)?.data?.summary?.total_items}
         </Text>
 
         <Text style={s.summaryText}>
-          Subtotal: ${order?.data?.summary?.subtotal?.toFixed(2)}
+          {t("common.subtotal")}: $
+          {(order as any)?.data?.summary?.subtotal?.toFixed(2)}
         </Text>
 
         <Text style={s.summaryText}>
-          Tax: ${order?.data?.summary?.tax?.toFixed(2)} j
+          {t("order.tax")}: ${(order as any)?.data?.summary?.tax?.toFixed(2)}
         </Text>
 
         <Text style={s.grandTotal}>
-          Grand Total: ${order?.data?.summary?.grand_total?.toFixed(2)}
+          {t("order.grand_total")}: $
+          {(order as any)?.data?.summary?.grand_total?.toFixed(2)}
         </Text>
       </View>
 
       {/* CUSTOMER NOTE */}
-      {!!order?.data?.customer_note && (
+      {!!(order as any)?.data?.customer_note && (
         <View style={s.section}>
-          <Text style={s.sectionTitle}>Customer Note</Text>
+          <Text style={s.sectionTitle}>{t("order.customer_note")}</Text>
 
-          <Text style={s.noteText}>{order.data.customer_note}</Text>
+          <Text style={s.noteText}>{(order as any).data.customer_note}</Text>
         </View>
       )}
     </ScrollView>

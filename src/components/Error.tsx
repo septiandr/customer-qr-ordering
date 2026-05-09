@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 import { Text, TouchableOpacity, View } from "react-native";
 
@@ -8,6 +9,7 @@ type Props = {
 };
 
 export function ErrorComponent({ onRetry, text }: Props) {
+  const { t } = useTranslation();
   return (
     <View
       style={{
@@ -28,7 +30,7 @@ export function ErrorComponent({ onRetry, text }: Props) {
           marginTop: 18,
         }}
       >
-        {text || "Failed to load data"}
+        {text || t("common.failed_to_load")}
       </Text>
 
       <TouchableOpacity
@@ -49,7 +51,7 @@ export function ErrorComponent({ onRetry, text }: Props) {
             fontWeight: "800",
           }}
         >
-          Retry
+          {t("common.retry")}
         </Text>
       </TouchableOpacity>
     </View>

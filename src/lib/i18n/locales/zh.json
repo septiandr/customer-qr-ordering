@@ -1,0 +1,55 @@
+{
+  "common": {
+    "loading": "加载中...",
+    "retry": "重试",
+    "failed_to_load": "数据加载失败",
+    "data_not_found": "未找到数据",
+    "add_to_cart": "加入购物车",
+    "qty": "数量",
+    "subtotal": "小计",
+    "total_items": "总计项目",
+    "proceed_to_checkout": "去结算",
+    "items_in_cart": "个项目在购物车中",
+    "required": "必选"
+  },
+  "home": {
+    "welcome": "欢迎 👋",
+    "browse_menu": "浏览菜单",
+    "browse_menu_subtitle": "探索美味食物",
+    "track_order": "追踪订单",
+    "track_order_subtitle": "查看烹饪进度",
+    "view_cart": "查看购物车",
+    "view_cart_subtitle": "检查您的订单",
+    "scan_another": "扫描其他桌号",
+    "home_description": "浏览菜单，追踪您的订单，享受您的用餐体验。"
+  },
+  "menu": {
+    "title": "菜单",
+    "subtitle": "发现美味食物 🍣",
+    "search_placeholder": "搜索菜单...",
+    "view_cart_a11y": "查看购物车，{{count}} 个项目",
+    "add_to_cart_a11y": "将 {{name}} 加入购物车",
+    "customization_hint": "打开此项目的自定义选项",
+    "add_hint": "将此项目加入购物车"
+  },
+  "cart": {
+    "title": "您的购物车",
+    "remove_item_a11y": "从购物车中移除 {{name}}",
+    "checkout_failed": "创建订单失败。请再试一次。",
+    "checkout_error": "出错了。请检查您的网络连接。"
+  },
+  "order": {
+    "title": "订单追踪",
+    "ordered_items": "已点项目",
+    "customer_note": "客户备注",
+    "tax": "税费",
+    "grand_total": "总计",
+    "loading_order": "正在加载订单..."
+  },
+  "scan": {
+    "title": "扫描桌号二维码",
+    "subtitle": "将摄像头对准桌号二维码",
+    "start_order": "扫描二维码开始点餐 🍽️",
+    "demo_table": "演示桌号"
+  }
+}

@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { ActivityIndicator, Text, View } from "react-native";
 
 export function Loading() {
+  const { t } = useTranslation();
   return (
     <View
       style={{
@@ -25,7 +27,7 @@ export function Loading() {
           marginTop: 16,
         }}
       >
-        Loading...
+        {t("common.loading")}
       </Text>
     </View>
   );

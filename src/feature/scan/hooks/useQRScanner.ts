@@ -67,7 +67,7 @@ export function useQRScanner() {
         );
       }
     },
-    [locked, router],
+    [locked, router, setTable, clearCart],
   );
 
   return {

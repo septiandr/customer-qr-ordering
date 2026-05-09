@@ -1,6 +1,6 @@
 import { router, useLocalSearchParams } from "expo-router";
-
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 import { Text, View } from "react-native";
 
@@ -25,6 +25,7 @@ export function MenuScreen() {
   const { table } = useLocalSearchParams<{
     table: string;
   }>();
+  const { t } = useTranslation();
 
   const [search, setSearch] = useState("");
   const [selectedCategory, setSelectedCategory] = useState(0);
@@ -110,7 +111,7 @@ export function MenuScreen() {
             fontWeight: "800",
           }}
         >
-          Menu
+          {t("menu.title")}
         </Text>
 
         <Text
@@ -119,7 +120,7 @@ export function MenuScreen() {
             marginTop: 4,
           }}
         >
-          Discover delicious food 🍣
+          {t("menu.subtitle")}
         </Text>
       </View>
 

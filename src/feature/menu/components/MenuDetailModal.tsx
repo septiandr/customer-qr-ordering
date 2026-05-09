@@ -8,6 +8,7 @@ import {
     View,
 } from "react-native";
 
+import { useTranslation } from "react-i18next";
 import { SelectedOption } from "../../cart/types/cart.type";
 import { MenuItem } from "../types/menu.type";
 
@@ -20,6 +21,7 @@ type Props = {
 
 export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
   const [selectedOptions, setSelectedOptions] = useState<SelectedOption[]>([]);
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!visible) setSelectedOptions([]);
@@ -122,7 +124,7 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
                       marginTop: 4,
                     }}
                   >
-                    Required
+                    {t("common.required")}
                   </Text>
                 )}
 
@@ -137,7 +139,7 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
                       accessibilityLabel={`${option.name}, extra price $${option.price_modifier.toFixed(2)}`}
                       accessibilityRole="radio"
                       accessibilityState={{ selected: active }}
-                      accessibilityHint={`Selects ${option.name} for your ${item.name}`}
+                      accessibilityHint={t("menu.customization_hint")}
                       style={{
                         backgroundColor: active ? "#FF8C32" : "#222",
                         borderRadius: 16,
@@ -188,10 +190,12 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
               }}
               disabled={selectedOptions.length === 0}
               onPress={() => onClickAdd(item, selectedOptions)}
-              accessibilityLabel={`Add ${item.name} to cart with selected options`}
+              accessibilityLabel={t("menu.add_to_cart_a11y", {
+                name: item.name,
+              })}
               accessibilityRole="button"
               accessibilityState={{ disabled: selectedOptions.length === 0 }}
-              accessibilityHint="Confirms your choices and adds the item to your cart"
+              accessibilityHint={t("menu.add_hint")}
             >
               <Text
                 style={{
@@ -200,7 +204,7 @@ export function MenuDetailModal({ item, visible, onClose, onClickAdd }: Props) {
                   fontSize: 16,
                 }}
               >
-                Add To Cart
+                {t("common.add_to_cart")}
               </Text>
             </TouchableOpacity>
           </ScrollView>

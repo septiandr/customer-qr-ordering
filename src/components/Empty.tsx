@@ -1,8 +1,10 @@
 import { Ionicons } from "@expo/vector-icons";
+import { useTranslation } from "react-i18next";
 
 import { Text, View } from "react-native";
 
 export function Empty({ text }: { text?: string }) {
+  const { t } = useTranslation();
   return (
     <View
       style={{
@@ -19,7 +21,7 @@ export function Empty({ text }: { text?: string }) {
           fontSize: 16,
         }}
       >
-        {text || "Data not found"}
+        {text || t("common.data_not_found")}
       </Text>
     </View>
   );

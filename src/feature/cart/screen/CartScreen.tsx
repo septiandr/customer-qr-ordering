@@ -1,4 +1,5 @@
 import { FlashList } from "@shopify/flash-list";
+import { useTranslation } from "react-i18next";
 import { Text, TouchableOpacity, View } from "react-native";
 
 import { useRouter } from "expo-router";
@@ -11,6 +12,7 @@ import s from "../styles/cart.styles";
 export default function CartScreenUI() {
   const cart = useCartStore((state) => state.cart);
   const router = useRouter();
+  const { t } = useTranslation();
   const currentTable = useTableStore((state) => state.currentTable);
 
   const subtotal = useCartStore((state) => state.subtotal);
@@ -30,13 +32,11 @@ export default function CartScreenUI() {
         });
       } else {
         // Handle API error message if present
-        alert(
-          (res as any)?.message || "Failed to create order. Please try again.",
-        );
+        alert((res as any)?.message || t("cart.checkout_failed"));
       }
     } catch (error) {
       console.error("Checkout error:", error);
-      alert("Something went wrong. Please check your connection.");
+      alert(t("cart.checkout_error"));
     }
   };
 
@@ -44,9 +44,11 @@ export default function CartScreenUI() {
     <View style={s.container}>
       {/* HEADER */}
       <View style={s.header}>
-        <Text style={s.title}>Your Cart</Text>
+        <Text style={s.title}>{t("cart.title")}</Text>
 
-        <Text style={s.subtitle}>{totalItems} items in cart</Text>
+        <Text style={s.subtitle}>
+          {totalItems} {t("common.items_in_cart")}
+        </Text>
       </View>
 
       {/* LIST */}
@@ -61,7 +63,7 @@ export default function CartScreenUI() {
       {/* FOOTER */}
       <View style={s.footer}>
         <View style={s.totalRow}>
-          <Text style={s.totalLabel}>Subtotal</Text>
+          <Text style={s.totalLabel}>{t("common.subtotal")}</Text>
 
           <Text style={s.totalValue}>${subtotal.toFixed(2)}</Text>
         </View>
@@ -69,11 +71,13 @@ export default function CartScreenUI() {
         <TouchableOpacity
           style={s.checkoutButton}
           onPress={onCheckout}
-          accessibilityLabel={`Proceed to checkout, total amount $${subtotal.toFixed(2)}`}
+          accessibilityLabel={`${t("common.proceed_to_checkout")}, total amount $${subtotal.toFixed(2)}`}
           accessibilityRole="button"
-          accessibilityHint="Sends your order to the kitchen"
+          accessibilityHint={t("menu.add_hint")}
         >
-          <Text style={s.checkoutButtonText}>Proceed to Checkout</Text>
+          <Text style={s.checkoutButtonText}>
+            {t("common.proceed_to_checkout")}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

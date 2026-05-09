@@ -1,3 +1,4 @@
+import "@/src/lib/i18n/i18n";
 import { QueryProvider } from "@/src/lib/query/query-provider";
 import { Stack } from "expo-router";
 import { SafeAreaProvider } from "react-native-safe-area-context";
