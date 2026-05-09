@@ -132,7 +132,7 @@ export default function OrderTrackingScreen() {
         </Text>
 
         <Text style={s.summaryText}>
-          Tax: ${order?.data?.summary?.tax?.toFixed(2)}
+          Tax: ${order?.data?.summary?.tax?.toFixed(2)} j
         </Text>
 
         <Text style={s.grandTotal}>
