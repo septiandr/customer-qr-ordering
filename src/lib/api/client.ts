@@ -1,4 +1,4 @@
-const BASE_URL = "https://your-api.com";
+const BASE_URL = process.env.EXPO_PUBLIC_API_URL || "https://your-api.com";
 
 type FetchOptions = RequestInit & {
   params?: Record<string, string | number>;

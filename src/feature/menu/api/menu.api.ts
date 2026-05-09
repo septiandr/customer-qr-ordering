@@ -1,28 +1,32 @@
 import categories from "@/src/feature/menu/samples/categories.json";
 import menu from "@/src/feature/menu/samples/foods.json";
-
-// export function getMenu(tableId: string) {
-//   return apiFetch(ENDPOINTS.MENU, {
-//     params: {
-//       table_id: tableId,
-//     },
-//   });
-// }
-
-// export function getCategories() {
-//   return apiFetch(ENDPOINTS.CATEGORIES);
-// }
+import { apiFetch } from "@/src/lib/api/client";
+import { ENDPOINTS } from "@/src/lib/api/enpoints";
 
 export async function getMenu(tableId: string) {
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  const useMock = process.env.EXPO_PUBLIC_USE_MOCK === "true";
 
-  console.log("fetching menu for table:", tableId);
+  if (useMock) {
+    return menu;
+  }
 
-  return menu;
+  const response = await apiFetch(ENDPOINTS.MENU, {
+    params: {
+      table_id: tableId,
+    },
+  });
+
+  return response;
 }
 
 export async function getCategories() {
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  const useMock = process.env.EXPO_PUBLIC_USE_MOCK === "true";
 
-  return categories;
+  if (useMock) {
+    return categories;
+  }
+
+  const response = await apiFetch(ENDPOINTS.CATEGORIES);
+
+  return response;
 }

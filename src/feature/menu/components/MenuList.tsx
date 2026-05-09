@@ -2,8 +2,8 @@ import { FlashList } from "@shopify/flash-list";
 
 import { RefreshControl, View } from "react-native";
 
+import { Empty as MenuEmpty } from "@/src/components/Empty";
 import { MenuCard } from "../components/MenuCard";
-import { MenuEmpty } from "./MenuEmpty";
 
 import { MenuItem } from "../types/menu.type";
 

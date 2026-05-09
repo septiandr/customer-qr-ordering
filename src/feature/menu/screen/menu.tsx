@@ -15,10 +15,10 @@ import { useCategories } from "../hooks/useCategories";
 import { useMenu } from "../hooks/useMenu";
 import { useMenuFilter } from "../hooks/useMenuFilter";
 
-import { MenuError } from "../components/MenuError";
+import { ErrorComponent as MenuError } from "@/src/components/Error";
+import { Loading as MenuLoading } from "@/src/components/Loading";
 import { MenuHeader } from "../components/MenuHeader";
 import { MenuList } from "../components/MenuList";
-import { MenuLoading } from "../components/MenuLoading";
 import { MenuItem } from "../types/menu.type";
 
 export function MenuScreen() {
@@ -27,15 +27,10 @@ export function MenuScreen() {
   }>();
 
   const [search, setSearch] = useState("");
-
   const [selectedCategory, setSelectedCategory] = useState(0);
-
   const [open, setOpen] = useState(false);
-
   const [selectedItem, setSelectedItem] = useState<MenuItem | null>(null);
-
   const addToCart = useCartStore((state) => state.addToCart);
-
   const totalItems = useCartStore((state) => state.totalItems);
 
   const {
@@ -49,7 +44,7 @@ export function MenuScreen() {
   const { data: categories } = useCategories();
 
   const filteredMenu = useMenuFilter({
-    menu,
+    menu: (menu as MenuItem[]) ?? [],
     search,
     selectedCategory,
   });
@@ -97,7 +92,7 @@ export function MenuScreen() {
       />
 
       <CategoryTabs
-        categories={categories ?? []}
+        categories={Array.isArray(categories) ? categories : []}
         selected={selectedCategory}
         onSelect={(id) => setSelectedCategory((prev) => (prev === id ? 0 : id))}
       />

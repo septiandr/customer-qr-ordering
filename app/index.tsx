@@ -3,16 +3,18 @@ import { LinearGradient } from "expo-linear-gradient";
 import { useRouter } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import {
-    ImageBackground,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
+  ImageBackground,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const router = useRouter();
+
+  const appName = process.env.EXPO_PUBLIC_APP_NAME || "iPot Restaurant";
 
   return (
     <View style={s.container}>
@@ -37,7 +39,7 @@ export default function HomeScreen() {
                 <Ionicons name="restaurant" size={28} color="#fff" />
               </View>
 
-              <Text style={s.title}>iPot Restaurant</Text>
+              <Text style={s.title}>{appName}</Text>
 
               <Text style={s.subtitle}>
                 Smart dining experience with QR ordering, instant checkout, and

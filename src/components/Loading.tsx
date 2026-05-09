@@ -1,6 +1,6 @@
 import { ActivityIndicator, Text, View } from "react-native";
 
-export function MenuLoading() {
+export function Loading() {
   return (
     <View
       style={{
@@ -18,7 +18,7 @@ export function MenuLoading() {
           marginTop: 16,
         }}
       >
-        Loading menu...
+        Loading...
       </Text>
     </View>
   );

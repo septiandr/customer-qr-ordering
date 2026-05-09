@@ -4,9 +4,10 @@ import { Text, TouchableOpacity, View } from "react-native";
 
 type Props = {
   onRetry: () => void;
+  text?: string;
 };
 
-export function MenuError({ onRetry }: Props) {
+export function ErrorComponent({ onRetry, text }: Props) {
   return (
     <View
       style={{
@@ -27,7 +28,7 @@ export function MenuError({ onRetry }: Props) {
           marginTop: 18,
         }}
       >
-        Failed to load menu
+        {text || "Failed to load data"}
       </Text>
 
       <TouchableOpacity

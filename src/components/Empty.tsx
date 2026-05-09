@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Text, View } from "react-native";
 
-export function MenuEmpty() {
+export function Empty({ text }: { text?: string }) {
   return (
     <View
       style={{
@@ -19,7 +19,7 @@ export function MenuEmpty() {
           fontSize: 16,
         }}
       >
-        No menu found
+        {text || "Data not found"}
       </Text>
     </View>
   );
