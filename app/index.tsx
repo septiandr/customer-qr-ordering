@@ -73,7 +73,7 @@ export default function HomeScreen() {
                 activeOpacity={0.8}
                 onPress={() =>
                   router.push({
-                    pathname: "/menu",
+                    pathname: "/home",
                     params: {
                       table: "T001",
                     },
